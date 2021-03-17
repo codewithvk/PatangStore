@@ -1,1 +1,3 @@
 # PatangStore
+
+`npm run dev`
