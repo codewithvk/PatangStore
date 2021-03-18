@@ -4,28 +4,24 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+
 import connectDB from './config/db.js'
 dotenv.config()
 connectDB()
 const app = express()
+
+// In letest version of node not need to body parser seprate.
+// It has been combine with express middleware.
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('SERVER IS RUNNING!!!!!')
 })
 
 
-
-
-
-
-
-
-
-
 app.use('/api/products', productRoutes)
-
-
-
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
