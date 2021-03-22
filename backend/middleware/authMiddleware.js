@@ -10,21 +10,20 @@ const protect = asyncHandler(async(req, res, next) =>{
            token = req.headers.authorization.split(" ")[1]
             const decode = jwt.verify(token,process.env.JWT_SECRET)
             req.user = await User.findById(decode.id).select('-password')
+            // console.log(req.user);
             next()
 
        } catch (err) {
-           console.log(err);
+           
            res.status(401)
            throw new Error('Not authorized , Token Miss found')
        } 
     }
     if(!token){
         res.status(401)
-           throw new Error('Not authorized , Token Miss found')
+        throw new Error('Not authorized , Token Miss found')
     }
-
-
-    next();
+    // next();
 
 
 })

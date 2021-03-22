@@ -34,7 +34,20 @@ const authUsers = asyncHandler(async(req, res)=>{
 
 const getUserProfiles = asyncHandler(async(req, res)=>{
 
-    res.send("sucess");
+    const user = await User.findById(req.user._id)
+   
+
+    if(user){
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        })
+    }else{
+        res.status(404)
+        throw new Error("InValid User Profile")
+    }
     
 })
 
