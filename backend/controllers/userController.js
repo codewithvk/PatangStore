@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js';
-
+import generateWebToken from '../utils/generateToken.js';
 const authUsers = asyncHandler(async(req, res)=>{
     
     const {email , password} = req.body
@@ -19,7 +19,7 @@ const authUsers = asyncHandler(async(req, res)=>{
             name: users.name,
             email: users.email,
             isAdmin: users.isAdmin,
-            token: false,
+            token: generateWebToken(users._id),
         })
 
     }else{
@@ -28,9 +28,14 @@ const authUsers = asyncHandler(async(req, res)=>{
 
     }
 
-
-    
 })
 
 
-export default authUsers
+
+const getUserProfiles = asyncHandler(async(req, res)=>{
+
+    res.send("sucess");
+    
+})
+
+export  {authUsers ,getUserProfiles}
