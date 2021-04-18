@@ -23,7 +23,7 @@ function PaymentScreen({ history }) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethode({ paymentMethod}));
-    history.push("/payment");
+    history.push("/placeorder");
   };
 
   return (
@@ -54,7 +54,7 @@ function PaymentScreen({ history }) {
           </Col>
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" onclick={submitHandler} >
           Continue
         </Button>
       </Form>
