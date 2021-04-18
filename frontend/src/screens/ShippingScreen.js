@@ -6,28 +6,28 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import {saveShippingAddress} from "../actions/cartActions";
+import { saveShippingAddress } from "../actions/cartActions";
 // import { createBrowserHistory } from "history";
-
+import CheckoutSteps from "../components/CheckoutSteps";
 function ShippingScreen({ history }) {
-
-    const cart = useSelector(state => state.cart)
-    const {shippingAddress} = cart
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
   const [address, setaddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({address,city,postalCode,country}))
-    history.push('/payment')
-
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    history.push("/payment");
   };
 
   return (
     <FormContainer>
+        <CheckoutSteps step1 step2 />
+        <h1>Shipping</h1>
       <Form.Group controlId="address">
         <Form.Label>Address</Form.Label>
         <Form.Control
