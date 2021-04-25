@@ -89,4 +89,10 @@ const updateUserProfiles = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUsers, getUserProfiles, ragisterUsers, updateUserProfiles };
+
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  res.json(users)
+})
+
+export { authUsers, getUserProfiles, ragisterUsers, updateUserProfiles ,getUsers };
