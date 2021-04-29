@@ -35,6 +35,7 @@ const RegisterScreen = ({ location, history }) => {
       setMessage("Password Is Not Metched!");
     } else {
       dispatch(register(name, email, password));
+      history.push('/');
     }
   };
 
